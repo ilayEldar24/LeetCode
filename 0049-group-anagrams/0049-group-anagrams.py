@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 def getCounts(str):
         lst = [0]*26
         
@@ -9,14 +11,19 @@ def getCounts(str):
 
 class Solution(object):
     def groupAnagrams(self, strs):
-        hmap = {}
+        res = defaultdict(list)
         
         for string in strs:
             codedString = getCounts(string)
-            if not hmap.get(codedString, 0):
-                 hmap[codedString] = [string]
-            else:
-                 hmap[codedString].append(string)
+            res[codedString].append(string)
         
-        return hmap.values()
+        return res.values()
     
+
+
+sol = Solution()
+
+print(sol.groupAnagrams(
+["eat","tea","tan","ate","nat","bat"]))
+            
+
