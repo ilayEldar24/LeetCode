@@ -4,6 +4,8 @@ class Solution(object):
         res = set()
         
         for index, num in enumerate(sortedNums):
+            if index > 0 and num == sortedNums[index-1]:
+                continue
             target = 0 - num
             l , r = index + 1, len(nums) - 1
             
