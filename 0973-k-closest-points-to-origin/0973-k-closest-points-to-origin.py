@@ -1,8 +1,25 @@
+import math
 import heapq
 
-class Solution(object):
+class Solution:
     def kClosest(self, points, k):
-        heap = [(((point[0])**2 + (point[1]**2))**0.5, [point[0],point[1]]) for point in points]
-        heapq.heapify(heap)
-        return [heapq.heappop(heap)[1] for _ in range(k)]
- 
+        def calcDist(point):
+            return math.sqrt(point[0]**2 + point[1]**2)
+        
+        res = []
+        modified = [(calcDist(point), point) for point in points]
+        heapq.heapify(modified)
+
+        for i in range(k):
+            res.append(heapq.heappop(modified)[1])
+        
+        return res
+
+
+
+
+
+
+        
+        
+        
