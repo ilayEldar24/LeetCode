@@ -1,19 +1,18 @@
-
-class Solution(object):
+class Solution:
     def lastStoneWeight(self, stones):
-        
-        stones = [stone * -1 for stone in stones]
-        heapq.heapify(stones)
-        
-        while len(stones) > 1:
-            num1 = heapq.heappop(stones) * -1
-            num2 = heapq.heappop(stones) * -1
+        modified = [stone * -1 for stone in stones]
+
+        heapq.heapify(modified)
+
+        while len(modified) > 1:
+            biggest = heapq.heappop(modified) * -1
+            secBiggest = heapq.heappop(modified) * -1
             
-            if num1!=num2:
-                newNum = num2-num1
-                heapq.heappush(stones, newNum)
-        if stones:
-            return stones[0]*-1
+            if biggest != secBiggest:
+                toInsert = (biggest - secBiggest) * -1
+                heapq.heappush(modified,toInsert)
+        res = [num * -1 for num in modified]
+        if res:
+            return res[0]
         else:
             return 0
-            
