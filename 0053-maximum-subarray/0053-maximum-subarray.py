@@ -9,5 +9,6 @@ class Solution:
             curSum += n
             maxSum = max(maxSum, curSum)
         
+        print()
         return maxSum
         
